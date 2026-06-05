@@ -1,0 +1,228 @@
+/* --- Globální nastavení a barvy --- */
+:root {
+    --primary-color: #0284c7;    /* Mořská modrá */
+    --secondary-color: #0f172a;  /* Tmavě modrá pro text */
+    --accent-color: #f59e0b;     /* Sluneční žlutá/oranžová pro detaily */
+    --bg-color: #f8fafc;         /* Světlé pozadí */
+    --card-bg: #ffffff;          /* Bílé pozadí pro boxy */
+    --text-muted: #64748b;       /* Šedá pro vedlejší text */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    line-height: 1.6;
+    padding: 20px 10px;
+}
+
+/* --- Přepínač jazyků --- */
+.lang {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    padding: 0 10px;
+}
+
+.lang a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.lang a:hover {
+    background-color: #cbd5e1;
+    color: var(--secondary-color);
+}
+
+.lang a.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.4);
+}
+
+/* --- Hlavní kontejner --- */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Typografie (Nadpisy a texty) --- */
+h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0369a1;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: var(--secondary-color);
+    margin: 30px 0 15px 0;
+    position: relative;
+    padding-left: 12px;
+}
+
+/* Stylová linka vedle nadpisů sekcí */
+h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+p {
+    margin-bottom: 15px;
+    color: #334155;
+}
+
+/* Úvodní odstavce */
+.container > p {
+    font-size: 1.05rem;
+    text-align: center;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Odrážky (Seznamy) --- */
+ul {
+    list-style: none; /* Skryjeme nudné černé tečky */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    background-color: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid #e2e8f0;
+}
+
+/* Přidání hezčí odrážky pomocí CSS */
+ul li::before {
+    content: "✓";
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+/* Výjimka pro doplňkové služby, kde už máš vlastní emoji */
+h3:contains("Doplňkové") + ul li::before,
+h3:nth-of-type(4) + ul li::before {
+    content: "" !important;
+    margin-right: 0;
+}
+
+
+/* Abychom cenu zvýraznili, upravíme přímo styl pro daný odstavec */
+.container > p:last-of-type {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    background-color: #fffbeb;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px dashed #fcd34d;
+    margin-top: 10px;
+}
+
+/* --- Kontakt --- */
+.container > p:last-child {
+    background-color: #f1f5f9;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.container > p:last-child a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* --- TIP: Fotogalerie (Pokud ji přidáš do HTML) --- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.gallery img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+/* --- Responzivita (Mobilní telefony) --- */
+@media (max-width: 600px) {
+    body {
+        padding: 10px 5px;
+    }
+    
+    .container {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        grid-template-columns: 1fr; /* Na mobilu pod sebou */
+    }
+}
